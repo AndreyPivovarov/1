@@ -75,3 +75,9 @@ nums = [1, 2, 3]
 9
 Вывод в консоль:
 16
+______
+команды для запуска скриптов:
+`task1 n m`
+`task2 path_to_file1.txt path_to_file2.txt`
+`task3 path_to_values.json path_to_tests.json`
+`task4 path_to_file.txt`
