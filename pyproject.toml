@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "Task"
+version = "0.1.0"
+description = "Test"
+authors = ["Vjacheslav <goplit2010.konovalov@yandex.ru>"]
+packages = [
+    { include = "task_1" },
+    { include = "task_2" },
+    { include = "task_3" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+task1 = "task_1.task1_run:main"
+task2 = "task_2.task2_run:main"
+task3 = "task_3.task3_run:main"

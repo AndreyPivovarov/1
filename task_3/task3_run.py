@@ -1,4 +1,5 @@
 import json
+import argparse
 
 
 class Parse():
@@ -16,10 +17,8 @@ class Parse():
 
 
     def run_sript(self):
-        json_value = self.open_json(self.file1)
-        json_test = self.open_json(self.file2)
-        value = json.loads(json_value)
-        test = json.loads(json_test)
+        value = self.open_json(self.file1)
+        test = self.open_json(self.file2)
         self.parse_json(value, False)
         self.parse_json(test, True)
         report_json = json.dumps(test, indent=4)
@@ -60,7 +59,17 @@ def task3(file1, file2):
     task = Parse(file1, file2)
     return task.run_sript()
 
+def cli_parser():
+    parser = argparse.ArgumentParser(description='Task1')
+    parser.add_argument('file1', help='path to file1.json values')
+    parser.add_argument('file2', help='path to file1.json tests')
+    return parser.parse_args()
 
-path_value = '/home/vjachesalv/Performance_lab/task_3/fixture/values.json'
-path_test = '/home/vjachesalv/Performance_lab/task_3/fixture/tests.json'
-task3(path_value, path_test)
+def main():
+    namespace = cli_parser()
+    task3(namespace.file1, namespace.file2)
+
+if __name__ == '__main__':
+    main()
+
+
