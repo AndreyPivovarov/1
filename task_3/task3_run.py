@@ -6,7 +6,7 @@ class Parse():
     response = {}
 
     def __init__(self, file1, file2) -> None:
-        self.file1 = file1 
+        self.file1 = file1
         self.file2 = file2
 
     def open_json(self, path):
@@ -14,7 +14,6 @@ class Parse():
             print(file)
             result = json.load(file)
         return result
-
 
     def run_sript(self):
         value = self.open_json(self.file1)
@@ -59,17 +58,18 @@ def task3(file1, file2):
     task = Parse(file1, file2)
     return task.run_sript()
 
+
 def cli_parser():
     parser = argparse.ArgumentParser(description='Task3')
     parser.add_argument('file1', help='path to file1.json values')
     parser.add_argument('file2', help='path to file2.json tests')
     return parser.parse_args()
 
+
 def main():
     namespace = cli_parser()
     task3(namespace.file1, namespace.file2)
 
+
 if __name__ == '__main__':
     main()
-
-

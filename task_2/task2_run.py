@@ -1,4 +1,3 @@
-import math
 import argparse
 
 
@@ -7,6 +6,7 @@ def cli_parser():
     parser.add_argument('centr_radius', help='path to file1.txt centr_radius')
     parser.add_argument('points', help='path to file2.txt points')
     return parser.parse_args()
+
 
 def parse_txt(file1, file2):
     points = []
@@ -20,17 +20,18 @@ def parse_txt(file1, file2):
             if not line:
                 break
     points = [[float(k) for k in y[0].split(' ')] for y in points]
-    radius_centr = [[float(l) for l in x.split(' ')] for x in radius_centr]
+    radius_centr = [[float(q) for q in x.split(' ')] for x in radius_centr]
     radius = radius_centr[1][0]
     centr_x = radius_centr[0][0]
     centr_y = radius_centr[0][1]
     result = {
-        'radius' : radius,
-        'centr_x' : centr_x,
-        'centr_y' : centr_y,
-        'points' : points
+        'radius': radius,
+        'centr_x': centr_x,
+        'centr_y': centr_y,
+        'points': points
     }
     return result
+
 
 def task2(data):
     xc = data['centr_x']
@@ -40,22 +41,20 @@ def task2(data):
     for point in data['points']:
         x = point[0]
         y = point[1]
-        result = ((x-xc)**2+(y-yc)**2) ** 0.5
+        result = ((x - xc) ** 2 + (y - yc) ** 2) ** 0.5
         if result < r:
             data['result'].append(f'point {x} - {y} : inside')
-            print(1) # точка внутри
+            print(1)  # точка внутри
         elif result == r:
             data['result'].append(f'point {x} - {y} : on border')
-            print(0) # точка лежит на окружности
+            print(0)  # точка лежит на окружности
         else:
             data['result'].append(f'point {x} - {y} : outside')
-            print(2) # точка снаружи
+            print(2)  # точка снаружи
     return data
+
 
 def main():
     namespace = cli_parser()
     data = parse_txt(namespace.centr_radius, namespace.points)
     print(task2(data))
-
-# print(task2(1, 6, 1, 1, 5))
-# print(parse_txt('/home/vjachesalv/Performance_lab/task_2/fixture/centr_radius.txt', '/home/vjachesalv/Performance_lab/task_2/fixture/coordinate_point.txt'))

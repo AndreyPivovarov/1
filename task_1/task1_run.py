@@ -10,7 +10,7 @@ def cli_parser():
 
 
 def task1(n, m):
-    lol = ( y for y in cycle([x for x in range(1, n + 1)]))
+    lol = (y for y in cycle([x for x in range(1, n + 1)]))
     count = 1
     rout = '1'
     lol.__next__()
@@ -23,10 +23,12 @@ def task1(n, m):
             count = 1
             rout += str(num)
 
+
 def main():
     namespace = cli_parser()
     result = task1(int(namespace.n), int(namespace.m))
     print(result)
+
 
 if __name__ == '__main__':
     main()
