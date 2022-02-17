@@ -4,8 +4,8 @@ import argparse
 
 def cli_parser():
     parser = argparse.ArgumentParser(description='Task1')
-    parser.add_argument('n')
-    parser.add_argument('m')
+    parser.add_argument('n', help='n')
+    parser.add_argument('m', help='m')
     return parser.parse_args()
 
 

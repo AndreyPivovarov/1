@@ -60,9 +60,9 @@ def task3(file1, file2):
     return task.run_sript()
 
 def cli_parser():
-    parser = argparse.ArgumentParser(description='Task1')
+    parser = argparse.ArgumentParser(description='Task3')
     parser.add_argument('file1', help='path to file1.json values')
-    parser.add_argument('file2', help='path to file1.json tests')
+    parser.add_argument('file2', help='path to file2.json tests')
     return parser.parse_args()
 
 def main():

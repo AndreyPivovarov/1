@@ -1,15 +1,61 @@
 import math
+import argparse
 
-def task2():
-    print("Введите координаты точки и радиус круга")
-    x_point = float(input("x = "))
-    y_point = float(input("y = "))
-    r_circle = float(input("R = "))
-    
-    hypotenuse = math.sqrt(x_point ** 2 + y_point ** 2)
-    
-    if hypotenuse <= r_circle:
-        print("Точка принадлежит кругу")
-    else:
-        print("Точка НЕ принадлежит кругу")
-    pass
+
+def cli_parser():
+    parser = argparse.ArgumentParser(description='Task2')
+    parser.add_argument('centr_radius', help='path to file1.txt centr_radius')
+    parser.add_argument('points', help='path to file2.txt points')
+    return parser.parse_args()
+
+def parse_txt(file1, file2):
+    points = []
+    with open(file1, 'r') as f1:
+        radius_centr = f1.read().split('\n')
+    with open(file2, 'r') as f2:
+        while True:
+            line = f2.readline().strip()
+            if line:
+                points.append(line.split('\n'))
+            if not line:
+                break
+    points = [[float(k) for k in y[0].split(' ')] for y in points]
+    radius_centr = [[float(l) for l in x.split(' ')] for x in radius_centr]
+    radius = radius_centr[1][0]
+    centr_x = radius_centr[0][0]
+    centr_y = radius_centr[0][1]
+    result = {
+        'radius' : radius,
+        'centr_x' : centr_x,
+        'centr_y' : centr_y,
+        'points' : points
+    }
+    return result
+
+def task2(data):
+    xc = data['centr_x']
+    yc = data['centr_y']
+    r = data['radius']
+    data['result'] = []
+    for point in data['points']:
+        x = point[0]
+        y = point[1]
+        result = ((x-xc)**2+(y-yc)**2) ** 0.5
+        if result < r:
+            data['result'].append(f'точка {x} - {y} : внутри')
+            print(1) # точка внутри
+        elif result == r:
+            data['result'].append(f'точка {x} - {y} : на окружности')
+            print(0) # точка лежит на окружности
+        else:
+            data['result'].append(f'точка {x} - {y} : снаружи')
+            print(2) # точка снаружи
+    return data
+
+def main():
+    namespace = cli_parser()
+    data = parse_txt(namespace.centr_radius, namespace.points)
+    print(task2(data))
+
+# print(task2(1, 6, 1, 1, 5))
+# print(parse_txt('/home/vjachesalv/Performance_lab/task_2/fixture/centr_radius.txt', '/home/vjachesalv/Performance_lab/task_2/fixture/coordinate_point.txt'))

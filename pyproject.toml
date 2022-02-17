@@ -7,6 +7,7 @@ packages = [
     { include = "task_1" },
     { include = "task_2" },
     { include = "task_3" },
+    { include = "task_4" },
 ]
 
 [tool.poetry.dependencies]
@@ -22,3 +23,4 @@ build-backend = "poetry.core.masonry.api"
 task1 = "task_1.task1_run:main"
 task2 = "task_2.task2_run:main"
 task3 = "task_3.task3_run:main"
+task4 = "task_4.task4_run:main"
