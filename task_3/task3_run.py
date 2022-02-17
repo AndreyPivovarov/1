@@ -1,5 +1,6 @@
 import json
 import argparse
+import os
 
 
 class Parse():
@@ -21,7 +22,6 @@ class Parse():
         self.parse_json(value, False)
         self.parse_json(test, True)
         report_json = json.dumps(test, indent=4)
-        print(report_json)
         return report_json
 
     def parse_json(self, test, write=False):
@@ -59,6 +59,13 @@ def task3(file1, file2):
     return task.run_sript()
 
 
+def save_report(report):
+
+    with open(f'{os.getcwd()}/report.json', 'w') as f:
+        f.write(report)
+
+
+
 def cli_parser():
     parser = argparse.ArgumentParser(description='Task3')
     parser.add_argument('file1', help='path to file1.json values')
@@ -68,7 +75,8 @@ def cli_parser():
 
 def main():
     namespace = cli_parser()
-    task3(namespace.file1, namespace.file2)
+    report = task3(namespace.file1, namespace.file2)
+    save_report(report)
 
 
 if __name__ == '__main__':
