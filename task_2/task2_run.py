@@ -42,13 +42,13 @@ def task2(data):
         y = point[1]
         result = ((x-xc)**2+(y-yc)**2) ** 0.5
         if result < r:
-            data['result'].append(f'точка {x} - {y} : внутри')
+            data['result'].append(f'point {x} - {y} : inside')
             print(1) # точка внутри
         elif result == r:
-            data['result'].append(f'точка {x} - {y} : на окружности')
+            data['result'].append(f'point {x} - {y} : on border')
             print(0) # точка лежит на окружности
         else:
-            data['result'].append(f'точка {x} - {y} : снаружи')
+            data['result'].append(f'point {x} - {y} : outside')
             print(2) # точка снаружи
     return data
 
